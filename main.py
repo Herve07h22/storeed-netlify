@@ -22,6 +22,10 @@ def storeed_generate():
         if 'WEBHOOK_URL' in os.environ and 'WEBHOOK_BODY' in os.environ :
             print("WEBHOOK_URL : " + os.environ['WEBHOOK_URL'])
             print("WEBHOOK_BODY : " + os.environ['WEBHOOK_BODY'])
+            webhook_env = json.loads(os.environ['WEBHOOK_BODY'])
+            if 'TWITTER_ID' in webhook_env:
+                config['TWITTER_ID'] = webhook_env['TWITTER_ID']
+            
 
     else:
         config = json.load(open("config.json", "r"))
