@@ -19,6 +19,9 @@ def storeed_generate():
         config['TWITTER_ID'] = os.environ['TWITTER_ID']
         config['TEMPLATE'] = os.environ['TEMPLATE']
         config['MAX_POSTS'] = int(os.environ['MAX_POSTS'])
+        if 'WEBHOOK_URL' in os.environ and 'WEBHOOK_BODY' in os.environ :
+            print("WEBHOOK_URL : " + os.environ['WEBHOOK_URL'])
+            print("WEBHOOK_BODY : " + os.environ['WEBHOOK_BODY'])
 
     else:
         config = json.load(open("config.json", "r"))
