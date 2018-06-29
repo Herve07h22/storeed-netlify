@@ -18,7 +18,7 @@ def storeed_generate():
         config['TWITTER_ACCESS_PWD'] = os.environ['TWITTER_ACCESS_PWD']
         config['TWITTER_ID'] = os.environ['TWITTER_ID']
         config['TEMPLATE'] = os.environ['TEMPLATE']
-        config['MAX_POSTS'] = os.environ['MAX_POSTS']
+        config['MAX_POSTS'] = int(os.environ['MAX_POSTS'])
 
     else:
         config = json.load(open("config.json", "r"))

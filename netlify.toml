@@ -20,6 +20,6 @@
     TWITTER_ACCESS_PWD = "ULHIR8GNO8WGqrFhYgJbq1mpG3tY2UW6kNf7kyBL65f9R"
     TWITTER_ID = "francoisz"
     TEMPLATE = "layout.html"
-    MAX_POSTS = 40
+    MAX_POSTS = "40"
 
 
