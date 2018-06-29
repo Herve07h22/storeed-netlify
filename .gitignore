@@ -1,2 +1,4 @@
 config.json
 .vscode/settings.json
+storeed/__pycache__/
+
