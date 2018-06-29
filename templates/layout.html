@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<hmtl lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta content="Hi ! I'm {{bio['name']}} and this is my personnal landing page. I publish my favorite posts and tell you my story." name="description">
+        <title>{{bio['name']}}</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+        <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+        <style>
+                .hidden {
+                  display: none;
+                }
+        </style>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-108543487-6"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'UA-108543487-6');
+        </script>
+
+    </head>
+
+    <body>
+        <nav class="navbar has-shadow is-spaced">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="https://bulma.io">
+                        <h1 class="title">{{bio['name']}}</h1>
+                    </a>
+                </div>
+                <div class="navbar-menu">
+                    <div class="navbar-end">
+                        <a class="navbar-item" onClick="openPopup()">
+                            <span class="icon">
+                                <i class="far fa-edit"></i>
+                            </span>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+
+        <div id="popup" class="notification is-info hidden">
+            <button class="delete" onClick="closePopup()"></button>
+            You can fully customize your personnal landing page by switching to the pro version of <a href="storeed.me">storeed.me</a>. You will have to log in as {{bio.id}} using your tweeter credentials.
+        </div>
+
+        <div class="section">
+            <div class="container">
+                <div class="tile is-ancestor">
+                    <div class="tile is-4 is-vertical is-parent">
+                        <div class="tile is-child box">
+                            
+                            <figure class="image">
+                                <img src="./img/orig/{{posts[0].image}}">
+                            </figure>
+                            <div class="card-content">
+                                <h2 class="title is-4">{{posts[0].titre}}</h2>
+                                <p class="heading">{% if posts[0].author %}By {{posts[0].author}} -{%endif%} {{posts[0].age}} days ago</p>
+                                <div class="tags">
+                                    {% for tag in posts[0].tags %}
+                                    <span class="tag is-rounded is-primary">{{tag}}</span>
+                                    {% endfor %}
+                                </div>
+                                <p>{{posts[0].description}}
+                                <a target="_blank" href="{{posts[0].url}}">Read more</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tile is-vertical is-parent">
+                    {% for post in posts[2:4] %}    
+                        <div class="tile is-child box">
+                            <div class="media">
+                                <div class="media-left">
+                                    <figure class="image">
+                                            <img src="./img/resized-150x150/{{post.image}}">
+                                    </figure>
+                                </div>
+                                <div class="media-content">    
+                                    <h2 class="title is-5">{{post.titre}}</h2>
+                                </div>
+                            </div>
+                            <p class="heading">{% if post.author %}By {{post.author}} - {%endif%} {{post.age}} days ago</p>
+                            <div class="tags">
+                                    {% for tag in post.tags %}
+                                    <span class="tag is-rounded is-primary">{{tag}}</span>
+                                    {% endfor %}
+                            </div>
+                                
+                            
+                            <p>{{post.description}}
+                                    <a target="_blank" href="{{post.url}}">Read more</a>
+                            </p>     
+                        </div>
+
+                    {% endfor %}        
+                    </div>
+
+                    <div class="tile is-4 is-vertical is-parent">
+                            <div class="tile is-child box">
+                                
+                                <figure class="image">
+                                    <img src="./img/orig/{{posts[1].image}}">
+                                </figure>
+                                <div class="card-content">
+                                    <h2 class="title is-4">{{posts[1].titre}}</h2>
+                                    <p class="heading">{% if posts[1].author %}By  {{posts[1].author}} -{%endif%} {{posts[1].age}} days ago</p>
+                                    <div class="tags">
+                                            {% for tag in posts[1].tags %}
+                                            <span class="tag is-rounded is-primary">{{tag}}</span>
+                                            {% endfor %}
+                                    </div>
+                                    <p>{{posts[1].description}}
+                                    <a target="_blank" href="{{posts[1].url}}">Read more</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="container">
+                <div class="columns">
+                    <div class="column is-8">
+                        <h2 class="title">My reading list</h2>
+                        <div class="tabs">
+                                <ul>
+                                  <li id="popular_tab" class="is-active"><a onClick="switchToPopular()">Popular</a></li>
+                                  <li id="recent_tab"><a onClick="switchToRecent()">Recent</a></li>
+                                </ul>
+                              </div>
+                        
+                        <div id="popular_posts">
+                            {% for post in posts[4:] |sort(attribute='rank' , reverse = True) %}
+                            <article class="box">
+                                <div class="media">
+                                    <figure class="media-left">
+                                            <p class="image">
+                                                <img src="./img/resized-150x150/{{post.image}}">
+                                            </p>
+                                    </figure>
+                                    <div class="media-content">     
+                                    
+                                        <p class="title is-5">{{post.titre}}</p>
+                                        <p class="heading">{% if post.author %}By {{post.author}} -{%endif%} {{post.age}} days ago</p>
+                                        <div class="tags">
+                                            {% for tag in post.tags %}
+                                            <span class="tag is-rounded is-primary">{{tag}}</span>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <p>{{post.description}} <a target="_blank" href="{{post.url}}">Read more</a></p>
+
+                                
+                            </article>
+                            {% endfor %}
+                            
+                        </div>
+
+                        <div id="recent_posts" class="hidden">
+                                {% for post in posts[4:] |sort(attribute='age') %}
+                                <article class="box">
+                                    <div class="media">
+                                        <figure class="media-left">
+                                                <p class="image">
+                                                    <img src="./img/resized-150x150/{{post.image}}">
+                                                </p>
+                                        </figure>
+                                        <div class="media-content">     
+                                        
+                                            <p class="title is-5">{{post.titre}}</p>
+                                            <p class="heading">By {{post.author}} - {{post.age}} days ago</p>
+                                            
+                                        </div>
+                                    </div>
+                                    <p>{{post.description}} <a target="_blank" href="{{post.url}}">Read more</a></p>
+    
+                                    
+                                </article>
+                                {% endfor %}
+                                
+                            </div>
+                        
+                    </div>
+                    <div class="column">
+                        <h1 class="title">About me</h1>
+
+                        <div class="card">
+                                <div class="card-image">
+                                  <figure class="image is-1by1">
+                                        <img src="{{bio.image}}">
+                                  </figure>
+                                </div>
+                                <div class="card-content">
+                                    <h1 class="title is-4">{{bio.name}}</h1>
+                                    <p class="subtitle is-6">{{bio.id}}</p>
+                                    <p>{{bio.description}}</p>
+                                    <br>
+                                        <a href="https://twitter.com/{{bio.id[1:]}}" class="twitter-follow-button" data-show-count="false" data-size="large" data-show-screen-name="false">Follow {{bio.id}}</a>
+                                        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                                </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="content has-text-centered">
+                    <p>
+                        Powered by <a href="storeed.me">storeed.me</a> - Made by <a href="07h22.com">07h22.com</a> - Copyright 2018
+                    </p>
+                </div>
+            </div>
+        </footer>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+            function switchToPopular() {
+                $("#popular_tab").addClass("is-active");
+                $("#recent_tab").removeClass("is-active");
+                $("#popular_posts").removeClass("hidden");
+                $("#recent_posts").addClass("hidden");
+            }
+            function switchToRecent() {
+                $("#popular_tab").removeClass("is-active");
+                $("#recent_tab").addClass("is-active");
+                $("#popular_posts").addClass("hidden");
+                $("#recent_posts").removeClass("hidden");
+            }
+            function openPopup() {
+                $("#popup").removeClass("hidden");
+            }
+            function closePopup() {
+                $("#popup").addClass("hidden");
+            }
+        </script>
+
+
+    </body>
+    

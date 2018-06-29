@@ -1,0 +1,25 @@
+# Global settings applied to the whole site.  
+# 
+# “publish” is the directory to publish (relative to root of your repo),
+# “command” is your build command,
+# “base” is directory to change to before starting build. if you set base:
+#    that is where we will look for package.json/.nvmrc/etc not repo root!
+
+[build]
+  publish = "dist"
+  command = "python main.py"
+
+# Production context: All deploys to the main
+# repository branch will inherit these settings.
+[context.production]
+  command = "python main.py"
+  [context.production.environment]
+    TWITTER_CONSUMER_KEY = "DWa89SPTNmHRcWiTzbPE1mPIU"
+    TWITTER_CONSUMER_PWD = "lU34TkEmU6NF2jr7hS8wDNR1B6n7E8hBDdB9ZoqOzMCon1Hhwq"
+    TWITTER_ACCESS_TOKEN = "957661475933507584-9sMRZRuobyVn0c7aqQ0PrUckeOFxFIn"
+    TWITTER_ACCESS_PWD = "ULHIR8GNO8WGqrFhYgJbq1mpG3tY2UW6kNf7kyBL65f9R"
+    TWITTER_ID = "francoisz"
+    TEMPLATE = "layout.html"
+    MAX_POSTS = 40
+
+
