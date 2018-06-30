@@ -12,7 +12,7 @@ def genere_site(config, posts, bio):
     env = Environment(loader=FileSystemLoader( os.path.join(os.getcwd(), "templates")), autoescape=select_autoescape(['html', 'xml']))
     template = env.get_template(config['TEMPLATE'])
     result = template.render(posts = posts, bio = bio)
-    with open( os.path.join(os.getcwd(),"dist", config['TWITTER_ID'], "index.html"), "w", encoding='utf-8') as f:
+    with open( os.path.join(os.getcwd(),"dist", "index.html"), "w", encoding='utf-8') as f:
         f.write(result)
 
     print("Personnal landing page successfully generated for " + config['TWITTER_ID'])

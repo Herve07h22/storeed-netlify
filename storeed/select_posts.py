@@ -123,7 +123,7 @@ def select_post(config, posts):
             buffer_image_orig = io.BytesIO()
             buffer_image_150 = io.BytesIO()
 
-            img_dir = os.path.join(os.getcwd(), "dist", config['TWITTER_ID'], "img")
+            img_dir = os.path.join(os.getcwd(), "dist", "img")
 
             if not os.path.exists( img_dir ):
                 print(" Create dirs for images" )
