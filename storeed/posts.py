@@ -76,6 +76,9 @@ def clean_text(s):
         { 'old' : 'Ã©', 'new' : 'é' },
         { 'old' : '\n', 'new' : ' ' },
         { 'old' : 'Ã', 'new' : 'à' },
+        { 'old' : '&eacute;', 'new' : 'é'},
+        { 'old' : '&quot;', 'new' : '"'},
+
     ]
     if not s:
         return ""

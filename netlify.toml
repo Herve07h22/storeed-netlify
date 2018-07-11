@@ -9,6 +9,14 @@
   publish = "dist"
   command = "python main.py"
 
-
+[template.environment]
+  TWITTER_CONSUMER_KEY = "set your consummer key you got from https://apps.twitter.com/"
+  TWITTER_CONSUMER_PWD = "set your consummer pwd you got from https://apps.twitter.com/"
+  TWITTER_ACCESS_TOKEN = "set the access token"
+  TWITTER_ACCESS_PWD = "set the access pwd"
+  TWITTER_ID = "set the twitter ID (without @)"
+  TEMPLATE = "layout.html"
+  MAX_POSTS = "Maximum depth of posts list (recommanded 40)"
+  
 
 
