@@ -33,7 +33,7 @@ s3transfer==0.1.13
 six==1.11.0
 tweepy==3.6.0
 typing==3.6.4
-urllib3==1.22
+urllib3==1.26.5
 watchdog==0.8.3
 wrapt==1.10.11
 yarl==1.2.4
